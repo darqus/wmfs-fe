@@ -1,0 +1,58 @@
+{
+  "name": "wmfs-fe",
+  "version": "0.0.1",
+  "description": "Based on Vue 3, quasar, pinia",
+  "productName": "wmfs-fe",
+  "private": true,
+  "scripts": {
+    "dev": "quasar dev",
+    "lint-fix": "eslint --ext .ts,.vue src --fix",
+    "test:unit:ui": "vitest --ui",
+    "test:unit": "vitest",
+    "test:unit:ci": "vitest run",
+    "build": "quasar build"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.16.7",
+    "axios": "^1.5.1",
+    "highcharts": "^11.1.0",
+    "highcharts-vue": "^1.4.3",
+    "http-status-codes": "^2.3.0",
+    "pinia": "^2.1.7",
+    "quasar": "^2.12.7",
+    "vue": "^3.3.4",
+    "vue-i18n": "^9.5.0",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@intlify/vite-plugin-vue-i18n": "^3.4.0",
+    "@quasar/app-vite": "~1.6.2",
+    "@quasar/quasar-app-extension-testing-unit-vitest": "^0.4.0",
+    "@types/node": "^20.8.6",
+    "@typescript-eslint/eslint-plugin": "^5.59.11",
+    "@typescript-eslint/parser": "^5.59.11",
+    "@vitest/ui": "^0.34.6",
+    "@vue/test-utils": "^2.4.1",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.51.0",
+    "eslint-config-standard-with-typescript": "^35.0.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-n": "^16.2.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-vue": "^9.17.0",
+    "postcss-html": "^1.5.0",
+    "stylelint": "^15.10.3",
+    "stylelint-config-html": "^1.1.0",
+    "stylelint-config-recess-order": "^4.3.0",
+    "stylelint-config-recommended-scss": "^13.0.0",
+    "stylelint-config-recommended-vue": "^1.5.0",
+    "stylelint-config-standard": "^34.0.0",
+    "typescript": "~5.1.0",
+    "vitest": "^0.34.6"
+  },
+  "engines": {
+    "node": "^20 || ^18 || ^16 || ^14.19",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  }
+}

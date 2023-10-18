@@ -1,0 +1,11 @@
+services:
+  efs-monitoring-fe:
+    image: efs-monitoring-fe:${VITE_VERSION}-${STAGE}
+    container_name: efs-monitoring-fe-${VITE_VERSION}-${STAGE}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - BUILDENV=${STAGE}
+    ports:
+      - 8080:80/tcp

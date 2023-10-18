@@ -1,0 +1,44 @@
+variables:
+  GIT_STRATEGY: clone
+
+stages:          # List of stages for jobs, and their order of execution
+  - deploy-127
+  - deploy-test
+  - deploy-dev
+  - clear
+
+deploy-job:      # This job runs in the deploy stage.
+  stage: deploy-127  # It only runs when *both* jobs in the test stage complete successfully.
+  when: manual
+  script:
+    - ssh  $IP_127_USER@$IP_127 mkdir -p /etc/delivery/$RELEASE_VERSION/Docker/transform-efs-monitoring-fe/
+    - scp -Cr  ./* $IP_127_USER@$IP_127:/etc/delivery/$RELEASE_VERSION/Docker/transform-efs-monitoring-fe/
+  tags:
+      - shared-shell
+
+manual-test-deploy:
+  stage: deploy-test
+  when: manual
+  tags: 
+      - shared-shell
+  script:  
+    -  echo "deploy application to TEST"
+    -  sudo mkdir -m 777 -p /var/opt/containers/test/transform-efs-monitoring-fe/
+    -  sudo cp -a ./. /var/opt/containers/test/transform-efs-monitoring-fe/
+    -  cd /var/opt/containers/test/transform-efs-monitoring-fe/&&sh build/build.sh test 
+
+manual-dev-deploy: 
+  stage: deploy-dev
+  when: manual
+  tags: 
+      - shared-shell
+  script:
+    - | 
+      echo "deploy application to dev"
+      sudo mkdir  -m 777 -p /var/opt/containers/dev/transform-efs-monitoring-fe/
+      cp  -a ./. /var/opt/containers/dev/transform-efs-monitoring-fe/
+      cd /var/opt/containers/dev/transform-efs-monitoring-fe/&&sh build/build.sh dev 
+   
+
+  
+    

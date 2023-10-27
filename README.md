@@ -6,7 +6,7 @@ Based on Vue 3 + vite, quasar, pinia
 
 ## Quasar Documentaion
 
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+See [Configuring quasar.config.js](https://quasar.dev/quasar-cli-vite/quasar-config-file).
 
 See [Directory Structure](https://quasar.dev/quasar-cli-vite/directory-structure).
 

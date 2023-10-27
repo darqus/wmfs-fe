@@ -6,10 +6,12 @@ import { API, } from 'src/types/api'
 import { type TPagination, type TDatePickerModel, type TToolbarButtons, type TTimePickerModel, type TBaseStore, } from 'src/types/components'
 import { STORE_TYPES, } from 'src/types/enums'
 
-import { HEADER_STYLE_LINE_BREAK, ROWS_PER_PAGE_OPTIONS, createInitialDatePickerModel, createInitialTimePickerModel, createPagination, getDatePicker, getInputRange, toggleLoading, } from 'src/utils/constants'
+import { DEFAULT_NSI_TYPE_ID, HEADER_STYLE_LINE_BREAK, ROWS_PER_PAGE_OPTIONS, createInitialDatePickerModel, createInitialTimePickerModel, createPagination, getDatePicker, getInputRange, toggleLoading, } from 'src/utils/constants'
 import { convertDateTimeToISO, } from 'src/utils/datetime'
 
 import { api, } from 'src/boot/axios'
+
+import { useStoreNsiTypes, } from './store-nsi-types'
 
 enum ETabs {
   processes = 'processes',
@@ -17,6 +19,8 @@ enum ETabs {
 }
 
 type TTabs = Record<ETabs, string>
+
+const nsiTypesStore = useStoreNsiTypes()
 
 const tabs: TTabs = {
   processes: 'processes-tab',
@@ -45,18 +49,26 @@ const chips: TToolbarButtons = [
 type TProcessesRow = {
   process: string
   status: string
-  globalProcessUdsId: string
-  globalProcessId: string
+  udsId: string
+  guid: string
   updatedAt: string
 }
 
 type TProcessesRows = TProcessesRow[]
 
+type TParams = {
+  startDate: string
+  endDate: string
+  pageNum: number
+  rowCount: number
+  nsiTypeId: string
+}
+
 const processesColumns: QTableProps['columns'] = [
   { label: 'Процесс', name: 'process', field: 'process', align: 'left', headerStyle: HEADER_STYLE_LINE_BREAK, },
   { label: 'Статус', name: 'status', field: 'status', align: 'left', headerStyle: HEADER_STYLE_LINE_BREAK, },
-  { label: 'ID', name: 'globalProcessUdsId', field: 'globalProcessUdsId', align: 'left', headerStyle: HEADER_STYLE_LINE_BREAK, },
-  { label: 'GUID', name: 'globalProcessId', field: 'globalProcessId', align: 'left', headerStyle: HEADER_STYLE_LINE_BREAK, },
+  { label: 'ID', name: 'udsId', field: 'udsId', align: 'left', headerStyle: HEADER_STYLE_LINE_BREAK, },
+  { label: 'GUID', name: 'guid', field: 'guid', align: 'left', headerStyle: HEADER_STYLE_LINE_BREAK, },
   // { label: 'Поступило', name: 'createdAt', field: 'createdAt', align: 'left', headerStyle: HEADER_STYLE_LINE_BREAK, },
   { label: 'Завершило обработку', name: 'updatedAt', field: 'updatedAt', align: 'left', headerStyle: HEADER_STYLE_LINE_BREAK, },
 ]
@@ -106,20 +118,23 @@ export const useStoreHistoryPage = defineStore(STORE_TYPES.HISTORY, {
       const startDate = convertDateTimeToISO(datePicker[0], timePickerModel?.from)
       const endDate = convertDateTimeToISO(datePicker[1], timePickerModel?.to)
 
-      toggleLoading(this)
-      api.post(API.getFinalStatusesWithinTimeframeUsingPOST, {
+      const params: TParams = {
         startDate,
         endDate,
         pageNum: props.pagination.page,
         rowCount: props.pagination.rowsPerPage,
-      })
-        .then(({ data, }) => {
-          // :TODO support totalRows if implement on backend
-          // const { data: responceRows, totalRows, } = data
-          this.pagination.rowsNumber = 10
+        nsiTypeId: nsiTypesStore?.currentNsi?.nsiTypeId ?? DEFAULT_NSI_TYPE_ID,
+      }
 
-          this.processesRows = data.filter((item: TProcessesRow) => this.search
-            ? item.globalProcessUdsId.includes(this.search) || item.globalProcessId.includes(this.search)
+      toggleLoading(this)
+      api.post(API.getFinalStatusesWithinTimeframeUsingPOST, params)
+        .then(({ data, }) => {
+          const { data: responceRows, totalRows, } = data
+
+          this.pagination.rowsNumber = totalRows
+
+          this.processesRows = responceRows.filter((item: TProcessesRow) => this.search
+            ? item.udsId.includes(this.search) || item.guid.includes(this.search)
             : true)
 
           // don't forget to update local pagination object

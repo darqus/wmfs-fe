@@ -8,7 +8,7 @@ import { Notify, } from 'quasar'
  *
  * @returns The created error message notification.
  */
-export const createErrorMessage = (message: string, color: string = 'red', group: boolean = true) => {
+export const createErrorMessage = (message: string, color = 'red', group = true) => {
   Notify.create({
     message,
     color,

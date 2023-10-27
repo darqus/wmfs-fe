@@ -32,7 +32,7 @@ module.exports = {
   ],
 
   globals: {
-    ga: 'readonly', // Google Analytics
+    /* ga: 'readonly', // Google Analytics
     cordova: 'readonly',
     __statics: 'readonly',
     __QUASAR_SSR__: 'readonly',
@@ -41,7 +41,7 @@ module.exports = {
     __QUASAR_SSR_PWA__: 'readonly',
     process: 'readonly',
     Capacitor: 'readonly',
-    chrome: 'readonly',
+    chrome: 'readonly', */
   },
 
   rules,

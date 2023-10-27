@@ -8,7 +8,7 @@
 // Configuration for your app
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
 
-const path = require('path')
+const path = require('node:path')
 
 const { configure, } = require('quasar/wrappers')
 

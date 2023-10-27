@@ -78,9 +78,12 @@ export enum BUTTON_TYPE {
   RESET = 'reset',
 }
 
-const ROUTES = Object.keys(ROUTE_TYPE).map((_) => _.toLowerCase())
+type Routes = Record<string, string>
 
-const ROUTE_PATH = ROUTES.reduce((acc: object, route: string) => ({ ...acc, [route.toUpperCase()]: `${VITE_ROUTER_BASE}${route}`, })
-  , {})
+const initRoutes: Routes = {}
+
+const ROUTE_PATH = Object.keys(ROUTE_TYPE)
+  .reduce((acc: Routes, route: string) => ({ ...acc, [route.toUpperCase()]: `${VITE_ROUTER_BASE}${route.toLowerCase()}`, })
+    , initRoutes)
 
 export { VITE_ROUTER_BASE, ROUTE_PATH, }

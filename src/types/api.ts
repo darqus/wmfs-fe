@@ -8,6 +8,6 @@ export enum API {
   getChildProcessStatusFssInfo = 'child-status/get-fss-main-info',
   getEfsInfoByParams = 'getEfsInfoByParams',
   getEfsInfoWithStatus = 'getEfsInfoWithStatus',
-  getFinalStatusesWithinTimeframeUsingPOST = 'global-status/get-final-statuses',
+  getFinalStatusesWithinTimeframeUsingPOST = 'status/get-final-statuses',
   getControlPoints = 'global-status/get-control-points',
 }

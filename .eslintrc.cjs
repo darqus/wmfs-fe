@@ -1,12 +1,14 @@
 const rules = require('./rules/eslint')
 
+// https://quasar.dev/quasar-cli-vite/supporting-ts
+
 module.exports = {
   root: true,
 
   parserOptions: {
-    extraFileExtensions: ['.vue'],
+    extraFileExtensions: [ '.vue', ],
     parser: '@typescript-eslint/parser',
-    project: ['./tsconfig.json'],
+    project: resolve(__dirname, './tsconfig.json'),
     tsconfigRootDir: __dirname,
     ecmaVersion: 'latest', // Allows for the parsing of modern ECMAScript features
     sourceType: 'module',
@@ -19,11 +21,11 @@ module.exports = {
     'vue/setup-compiler-macros': true,
   },
 
+  // Rules order is important, please avoid shuffling them
   extends: [
-    'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:vue/vue3-recommended',
-    'standard-with-typescript'
+    'plugin:vue/vue3-strongly-recommended',
+    'standard',
   ],
 
   plugins: [
@@ -32,7 +34,7 @@ module.exports = {
   ],
 
   globals: {
-    /* ga: 'readonly', // Google Analytics
+    ga: 'readonly', // Google Analytics
     cordova: 'readonly',
     __statics: 'readonly',
     __QUASAR_SSR__: 'readonly',
@@ -41,8 +43,9 @@ module.exports = {
     __QUASAR_SSR_PWA__: 'readonly',
     process: 'readonly',
     Capacitor: 'readonly',
-    chrome: 'readonly', */
+    chrome: 'readonly',
   },
 
+  // add your custom rules here
   rules,
 }

@@ -22,7 +22,8 @@
     "allowJs": true,
     "paths": {
       "@/*": [
-        "src/*"
+        "src/*",
+        "test/*"
       ],
     },
     "types": [
@@ -42,6 +43,13 @@
   "exclude": [
     ".quasar",
     "dist",
-    "node_modules"
+    "node_modules",
+    "tsconfig.json",
+    "vite.config.ts",
+    "vitest.config.ts",
+    "package.json",
+    "package-lock.json",
+    "quasar.testing.json",
+    "quasar.extensions.json",
   ],
 }

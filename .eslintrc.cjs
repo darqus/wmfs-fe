@@ -1,3 +1,5 @@
+const { resolve, } = require('node:path')
+
 const rules = require('./rules/eslint')
 
 // https://quasar.dev/quasar-cli-vite/supporting-ts

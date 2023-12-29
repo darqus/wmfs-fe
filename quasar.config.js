@@ -72,27 +72,7 @@ module.exports = configure((/* ctx */) => ({
 
     // publicPath: '/',
     // analyze: true,
-    env: {
-      VITE_NAME_FULL: process.env.VITE_NAME_FULL,
-      VITE_NAME_SHORT: process.env.VITE_NAME_SHORT,
-      VITE_DESCRIPTION: process.env.VITE_DESCRIPTION,
-      VITE_BUILD_DATE: process.env.VITE_BUILD_DATE,
-      VITE_VERSION: process.env.VITE_VERSION,
-      VITE_API_PROTOCOL: process.env.VITE_API_PROTOCOL,
-      VITE_API_DOMAIN: process.env.VITE_API_DOMAIN,
-      VITE_API_PORT: process.env.VITE_API_PORT,
-      VITE_API_HOST: process.env.VITE_API_HOST,
-      VITE_API_VERSION: process.env.VITE_API_VERSION,
-      VITE_API_BASE_URL: process.env.VITE_API_BASE_URL,
-      VITE_API: process.env.VITE_API,
-      VITE_ROUTER_MODE: process.env.VITE_ROUTER_MODE,
-      VITE_ROUTER_BASE: process.env.VITE_ROUTER_BASE,
-      VITE_SERVER: process.env.VITE_SERVER,
-      VITE_OPEN_DEV_IN_BROWSER: process.env.VITE_OPEN_DEV_IN_BROWSER,
-      VITE_PORT: process.env.VITE_PORT,
-      VITE_DARK: process.env.VITE_DARK,
-      NODE_ENV: process.env.NODE_ENV,
-    },
+    // env: {},
     // rawDefine: {}
     // ignorePublicFolder: true,
     // minify: false,
@@ -121,7 +101,7 @@ module.exports = configure((/* ctx */) => ({
   // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#devServer
   devServer: {
     // https: true,
-    open: process.env.VITE_OPEN_DEV_IN_BROWSER, // opens browser window automatically
+    open: true, // opens browser window automatically
   },
 
   // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework
@@ -171,8 +151,8 @@ module.exports = configure((/* ctx */) => ({
     // manualStoreHydration: true,
     // manualPostHydrationTrigger: true,
 
-    // prodPort: process.env.VITE_PORT, // The default port that the production server should use
-    // (gets superseded if process.env.VITE_PORT is specified at runtime)
+    // prodPort: 3000, // The default port that the production server should use
+    // (gets superseded if 3000 is specified at runtime)
 
     middlewares: [
       'render', // keep this as last one

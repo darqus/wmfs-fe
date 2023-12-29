@@ -46,11 +46,11 @@
               v-for="item in homePageStore.summary"
               :key="item.label"
               v-model.value="item.value"
-              readonly
-              borderless
               :label="item.label"
               style="width: 150px"
+              borderless
               hide-dropdown-icon
+              readonly
             >
               <template #prepend>
                 <q-icon :name="item.icon" />
@@ -59,15 +59,15 @@
           </div>
           <div class="col-auto">
             <q-table
+              :columns="homePageStore.statusesColumns"
+              :rows="homePageStore.statusesRows"
+              row-key="color"
               title="Статус"
               title-class="text-subtitle1"
-              :rows="homePageStore.statusesRows"
-              :columns="homePageStore.statusesColumns"
-              row-key="color"
-              hide-pagination
-              hide-header
               dense
               flat
+              hide-header
+              hide-pagination
             >
               <template #body="props">
                 <q-tr :props="props">
@@ -79,9 +79,9 @@
                     <template v-if="col.name === 'color'">
                       <q-icon
                         :color="col.value"
-                        round
-                        dense
                         name="circle"
+                        dense
+                        round
                       />
                     </template>
                     <template v-else>
@@ -107,63 +107,63 @@
         </div>
         <div class="row full-width">
           <CommonTable
-            flat
-            dense
-            hide-pagination
-            row-key="name"
-            class="full-width"
-            :rows="homePageStore.totalRows"
             :columns="homePageStore.totalColumns"
             :filter="homePageStore.search"
+            :rows="homePageStore.totalRows"
             :loading="homePageStore.loading"
+            class="full-width"
+            row-key="name"
+            dense
+            flat
+            hide-pagination
           >
             <template #top>
               <q-chip
                 v-for="chip in chips"
                 v-show="chip.show ?? true"
                 :key="chip.label"
-                outline
-                clickable
-                square
-                size="md"
-                color="primary"
-                text-color="white"
                 class="q-mr-sm"
                 :icon="chip.icon"
+                color="primary"
                 :label="chip.label"
+                size="md"
+                text-color="white"
+                clickable
+                outline
+                square
                 @click="chip?.onClick"
               />
               <q-input
                 v-model="homePageStore.inputRange"
-                rounded
-                outlined
-                readonly
-                clearable
-                dense
                 label="Выберите интервал"
                 style="width: 320px;"
+                clearable
                 :debounce="DEBOUNCE"
+                dense
+                outlined
+                readonly
+                rounded
               >
                 <template #prepend>
                   <q-icon
-                    name="event"
                     class="cursor-pointer"
+                    name="event"
                   />
                   <q-popup-proxy>
                     <q-date
                       v-model="homePageStore.datePickerModel"
                       mask="DD.MM.YYYY"
-                      minimal
                       dense
-                      range
+                      minimal
                       no-unset
+                      range
                     />
                   </q-popup-proxy>
                 </template>
                 <template #append>
                   <q-icon
-                    name="access_time"
                     class="cursor-pointer"
+                    name="access_time"
                   >
                     <q-popup-proxy>
                       <q-time
@@ -183,15 +183,15 @@
               <q-space />
               <q-input
                 v-model="homePageStore.search"
-                rounded
-                outlined
-                dense
-                clearable
-                label="Поиск"
                 :debounce="DEBOUNCE"
+                label="Поиск"
                 style="width: 328px;"
                 :disable="homePageStore.loading"
+                clearable
                 :loading="homePageStore.loading"
+                dense
+                outlined
+                rounded
               >
                 <template #prepend>
                   <q-icon name="search" />
@@ -208,7 +208,7 @@
 <script setup lang="ts">
 import { watch, } from 'vue'
 
-import { /* TSeries, */ TToolbarButtons, } from 'src/types/components'
+import type { /* TSeries, */ TToolbarButtons, } from 'src/types/components'
 
 import { useStoreHomePage, } from 'src/stores/store-home-page'
 import { useStoreNsiTypes, } from 'src/stores/store-nsi-types'

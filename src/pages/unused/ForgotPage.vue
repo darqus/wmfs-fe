@@ -10,22 +10,22 @@
 
       <q-input
         v-model="storeAuth.email"
-        outlined
-        dense
-        clearable
-        label="Email"
-        lazy-rules
         :rules="[...rules.required, ...rules.email]"
+        label="Email"
+        clearable
+        dense
+        lazy-rules
+        outlined
       />
 
       <div class="row justify-center">
         <q-btn
-          label="Сбросить пароль"
-          type="submit"
-          color="primary"
-          no-caps
           :disable="storeAuth.loading"
           :loading="storeAuth.loading"
+          color="primary"
+          label="Сбросить пароль"
+          type="submit"
+          no-caps
         />
       </div>
     </q-form>

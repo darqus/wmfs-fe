@@ -1,11 +1,11 @@
 <template>
   <q-page class="row items-center justify-evenly">
     <q-circular-progress
+      class="q-ma-md"
+      color="primary"
+      size="50px"
       indeterminate
       rounded
-      size="50px"
-      color="primary"
-      class="q-ma-md"
     />
   </q-page>
 </template>

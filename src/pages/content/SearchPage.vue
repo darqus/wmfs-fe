@@ -10,14 +10,14 @@
         v-for="item in searchPageStore.selectTypeFilterList"
         :key="item.type"
         v-model="searchPageStore.currentTypeFilterList"
-        :val="item"
         :label="item.label"
+        :val="item"
       />
       <q-select
         v-model="searchPageStore.selectedFilterList"
         :options="Object.values(searchPageStore.filteredList)"
-        multiple
         style="width: 350px"
+        multiple
       />
     </div>
     <div
@@ -34,12 +34,12 @@
         <q-input
           v-if="item.type === COMPONENT_TYPE.INPUT"
           v-model="item.inputModel"
-          rounded
-          outlined
-          dense
-          clearable
           :debounce="DEBOUNCE"
           :label="item.label"
+          clearable
+          dense
+          outlined
+          rounded
         >
           <template #prepend>
             <q-icon name="search" />
@@ -47,43 +47,43 @@
         </q-input>
         <NsiTypes
           v-if="item.type === COMPONENT_TYPE.SELECT"
-          disable
-          rounded
-          outlined
-          dense
           :label="item.label"
+          dense
+          disable
+          outlined
+          rounded
         />
         <q-input
           v-if="item.type === COMPONENT_TYPE.RANGE_PICKER"
           v-model="searchPageStore.inputRange"
-          rounded
-          outlined
-          readonly
-          clearable
-          dense
           :label="item.label"
           :debounce="DEBOUNCE"
+          clearable
+          dense
+          outlined
+          readonly
+          rounded
         >
           <template #prepend>
             <q-icon
-              name="event"
               class="cursor-pointer"
+              name="event"
             />
             <q-popup-proxy>
               <q-date
                 v-model="searchPageStore.datePickerModel"
                 mask="DD.MM.YYYY"
-                minimal
                 dense
-                range
+                minimal
                 no-unset
+                range
               />
             </q-popup-proxy>
           </template>
           <template #append>
             <q-icon
-              name="access_time"
               class="cursor-pointer"
+              name="access_time"
             >
               <q-popup-proxy>
                 <q-time
@@ -103,26 +103,26 @@
       </template>
       <div class="action-buttons">
         <q-btn
-          rounded
-          unelevated
-          no-caps
-          size="md"
-          outline
           color="primary"
           label="Сбросить"
           :loading="searchPageStore.loading"
+          size="md"
           :disable="searchPageStore.loading"
+          no-caps
+          outline
+          rounded
+          unelevated
           @click="searchPageStore.reset"
         />
         <q-btn
+          :loading="searchPageStore.loading"
+          color="primary"
+          :disable="searchPageStore.loading"
+          label="Найти"
+          size="md"
+          no-caps
           rounded
           unelevated
-          no-caps
-          size="md"
-          color="primary"
-          label="Найти"
-          :loading="searchPageStore.loading"
-          :disable="searchPageStore.loading"
           @click="searchPageStore.getEfsInfoByParams({ pagination: searchPageStore.pagination, })"
         />
       </div>
@@ -130,16 +130,16 @@
 
     <CommonTable
       v-model:pagination="searchPageStore.pagination"
-      flat
-      dense
-      row-key="globalProcessId"
-      class="q-mt-lg"
-      table-header-class="no-padding"
       :rows-per-page-options="searchPageStore.rowsPerPageOptions"
       :rows="searchPageStore.rows"
+      class="q-mt-lg"
       :columns="searchPageStore.columns"
+      row-key="globalProcessId"
       :filter="searchPageStore.search"
+      table-header-class="no-padding"
       :loading="searchPageStore.loading"
+      dense
+      flat
       @request="searchPageStore.getEfsInfoByParams"
     >
       <template #top>
@@ -147,29 +147,29 @@
           v-for="chip in searchPageStore.chips"
           v-show="chip.show ?? true"
           :key="chip.label"
-          outline
-          clickable
-          square
-          size="md"
-          color="primary"
-          text-color="white"
           class="q-mr-sm"
           :icon="chip.icon"
+          color="primary"
           :label="chip.label"
+          size="md"
+          text-color="white"
+          clickable
+          outline
+          square
           @click="chip?.onClick"
         />
         <q-space />
         <q-input
           v-model="searchPageStore.search"
-          rounded
-          outlined
-          dense
-          clearable
           label="Поиск"
-          style="width: 328px;"
           :debounce="DEBOUNCE"
+          style="width: 328px;"
           :disable="searchPageStore.loading"
+          clearable
           :loading="searchPageStore.loading"
+          dense
+          outlined
+          rounded
         >
           <template #prepend>
             <q-icon name="search" />

@@ -1,8 +1,8 @@
 <template>
   <charts
     ref="chart"
-    class="highcharts"
     :options="options"
+    class="highcharts"
   />
 </template>
 

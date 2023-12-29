@@ -14,13 +14,13 @@
         </div>
 
         <q-btn
+          :label="t('buttons.home')"
           class="q-mt-xl"
           color="white"
           text-color="blue"
-          unelevated
           to="/"
-          :label="t('buttons.home')"
           no-caps
+          unelevated
         />
       </div>
     </div>

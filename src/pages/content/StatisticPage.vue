@@ -13,13 +13,13 @@
       >
         <q-tab
           :name="tabs.processes"
-          no-caps
           label="Столбчатый"
+          no-caps
         />
         <q-tab
           :name="tabs.checkpoint"
-          no-caps
           label="Линейный"
+          no-caps
         />
       </q-tabs>
     </div>
@@ -29,15 +29,15 @@
           v-for="chip in chips"
           v-show="chip.show ?? true"
           :key="chip.label"
-          outline
-          size="md"
-          color="primary"
-          text-color="white"
-          clickable
-          square
           class="q-mr-sm"
           :icon="chip.icon"
+          color="primary"
           :label="chip.label"
+          size="md"
+          text-color="white"
+          clickable
+          outline
+          square
           @click="chip?.onClick"
         />
       </div>
@@ -45,10 +45,10 @@
         <q-input
           v-model="search"
           label="Поиск"
-          rounded
-          outlined
-          dense
           style="width: 328px;"
+          dense
+          outlined
+          rounded
         >
           <template #prepend>
             <q-icon name="search" />
@@ -153,7 +153,7 @@
 <script setup lang="ts">
 import { ref, } from 'vue'
 
-import { TSeries, TToolbarButtons, } from 'src/types/components'
+import type { TSeries, TToolbarButtons, } from 'src/types/components'
 
 import NsiTypes from 'components/content/NsiTypes.vue'
 import CommonChart from 'components/Highcharts/CommonChart.vue'

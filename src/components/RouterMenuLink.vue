@@ -1,8 +1,8 @@
 <template>
   <q-item
     v-if="visible"
-    clickable
     :to="path"
+    clickable
   >
     <q-item-section
       v-if="icon"

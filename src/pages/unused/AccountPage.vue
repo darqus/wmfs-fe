@@ -10,12 +10,12 @@
 
       <q-input
         v-model="storeAuth.currentEmail"
-        outlined
+        :rules="[...rules.required, ...rules.email]"
+        label="Email"
         dense
         disable
-        label="Email"
         lazy-rules
-        :rules="[...rules.required, ...rules.email]"
+        outlined
       />
     </q-form>
   </q-page>

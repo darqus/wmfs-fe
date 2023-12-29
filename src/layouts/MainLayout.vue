@@ -27,11 +27,11 @@
 
     <q-drawer
       v-model="leftDrawerOpen"
-      show-if-above
-      behavior="desktop"
-      persistent
       :width="180"
+      behavior="desktop"
       style="background-color: #fafafa;"
+      persistent
+      show-if-above
     >
       <SidebarDrawer />
     </q-drawer>

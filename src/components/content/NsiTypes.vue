@@ -1,8 +1,8 @@
 <template>
   <q-select
     v-model="nsiTypesStore.currentNsi"
-    :options="nsiTypesStore.nsiTypes"
     :loading="nsiTypesStore.loading"
+    :options="nsiTypesStore.nsiTypes"
   />
 </template>
 

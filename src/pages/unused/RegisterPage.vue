@@ -3,31 +3,31 @@
     <q-form
       class="q-gutter-md"
       style="max-width: 400px"
-      @submit.prevent="storeAuth.onRegister"
       @reset="storeAuth.onResetForm"
+      @submit.prevent="storeAuth.onRegister"
     >
       <div class="row justify-center q-mb-md text-h6">
         Регистрация
       </div>
       <q-input
         v-model="storeAuth.email"
-        outlined
-        dense
-        type="email"
-        label="Email"
-        lazy-rules
         :rules="[...rules.required, ...rules.email]"
+        label="Email"
+        type="email"
+        dense
+        lazy-rules
+        outlined
       />
 
       <q-input
         v-model="storeAuth.password"
-        outlined
-        dense
-        type="password"
-        label="Пароль"
         class="q-mb-lg"
-        lazy-rules
         :rules="[...rules.required, ...rules.password]"
+        label="Пароль"
+        type="password"
+        dense
+        lazy-rules
+        outlined
       />
 
       <!-- <q-toggle
@@ -37,21 +37,21 @@
 
       <div class="row justify-between">
         <q-btn
+          :disable="storeAuth.loading"
+          color="primary"
           label="Очистить"
           type="reset"
-          color="primary"
-          outline
           no-caps
-          :disable="storeAuth.loading"
+          outline
         />
         <q-btn
-          label="Зарегистрироваться"
-          type="submit"
-          color="primary"
-          class="q-ml-lg"
-          no-caps
           :disable="storeAuth.loading"
           :loading="storeAuth.loading"
+          class="q-ml-lg"
+          color="primary"
+          label="Зарегистрироваться"
+          type="submit"
+          no-caps
         />
       </div>
     </q-form>

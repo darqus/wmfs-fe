@@ -8,15 +8,15 @@
           v-for="btn in buttons"
           v-show="btn.show ?? true"
           :key="btn.label"
+          :flat="btn.flat"
+          class="q-mr-sm"
+          :icon="btn.icon"
+          color="primary"
+          :label="btn.label"
+          size="md"
+          no-caps
           rounded
           unelevated
-          no-caps
-          size="md"
-          color="primary"
-          class="q-mr-sm"
-          :flat="btn.flat"
-          :icon="btn.icon"
-          :label="btn.label"
           @click="btn?.onClick"
         />
       </div>
@@ -27,13 +27,13 @@
         >
           <q-tab
             :name="historyPageStore.tabs.processes"
-            no-caps
             label="Процессы"
+            no-caps
           />
           <q-tab
             :name="historyPageStore.tabs.checkpoint"
-            no-caps
             label="Контрольные точки"
+            no-caps
           />
         </q-tabs>
       </div>
@@ -41,20 +41,20 @@
     <div class="row">
       <q-tab-panels
         v-model="historyPageStore.currentTab"
-        animated
         class="full-width"
+        animated
       >
         <q-tab-panel :name="historyPageStore.tabs.processes">
           <CommonTable
             v-model:pagination="historyPageStore.pagination"
-            flat
-            dense
-            row-key="globalProcessUdsId"
-            :rows-per-page-options="historyPageStore.rowsPerPageOptions"
-            :rows="historyPageStore.processesRows"
             :columns="historyPageStore.processesColumns"
             :filter="historyPageStore.search"
+            :rows="historyPageStore.processesRows"
             :loading="historyPageStore.loading"
+            :rows-per-page-options="historyPageStore.rowsPerPageOptions"
+            row-key="globalProcessUdsId"
+            dense
+            flat
             @request="historyPageStore.getFinalStatusesWithinTimeframeUsingPOST"
           >
             <template #top>
@@ -62,48 +62,48 @@
                 v-for="chip in chips"
                 v-show="chip.show ?? true"
                 :key="chip.label"
-                outline
-                clickable
-                square
-                size="md"
-                color="primary"
-                text-color="white"
                 class="q-mr-sm"
                 :icon="chip.icon"
+                color="primary"
                 :label="chip.label"
+                size="md"
+                text-color="white"
+                clickable
+                outline
+                square
                 @click="chip?.onClick"
               />
               <q-input
                 v-model="historyPageStore.inputRange"
-                rounded
-                outlined
-                readonly
-                clearable
-                dense
                 label="Выберите интервал"
                 style="width: 320px;"
+                clearable
                 :debounce="DEBOUNCE"
+                dense
+                outlined
+                readonly
+                rounded
               >
                 <template #prepend>
                   <q-icon
-                    name="event"
                     class="cursor-pointer"
+                    name="event"
                   />
                   <q-popup-proxy>
                     <q-date
                       v-model="historyPageStore.datePickerModel"
                       mask="DD.MM.YYYY"
-                      minimal
                       dense
-                      range
+                      minimal
                       no-unset
+                      range
                     />
                   </q-popup-proxy>
                 </template>
                 <template #append>
                   <q-icon
-                    name="access_time"
                     class="cursor-pointer"
+                    name="access_time"
                   >
                     <q-popup-proxy>
                       <q-time
@@ -123,15 +123,15 @@
               <q-space />
               <q-input
                 v-model="historyPageStore.search"
-                rounded
-                outlined
-                dense
-                clearable
                 label="Поиск"
-                style="width: 328px;"
                 :debounce="DEBOUNCE"
+                style="width: 328px;"
                 :disable="historyPageStore.loading"
+                clearable
                 :loading="historyPageStore.loading"
+                dense
+                outlined
+                rounded
               >
                 <template #prepend>
                   <q-icon name="search" />
@@ -140,8 +140,8 @@
             </template>
             <template #no-data="{ icon, message, filter }">
               <div
-                class="full-width row flex-center q-gutter-sm q-pa-md"
                 align="center"
+                class="full-width row flex-center q-gutter-sm q-pa-md"
               >
                 <div
                   :class="{
@@ -150,8 +150,8 @@
                   }"
                 >
                   <q-icon
-                    size="2em"
                     :name="filter ? 'filter_alt' : icon"
+                    size="2em"
                   />
                   <span
                     class="text-subtitle2 q-ml-md"
@@ -169,7 +169,7 @@
 </template>
 
 <script setup lang="ts">
-import { TToolbarButtons, } from 'src/types/components'
+import type { TToolbarButtons, } from 'src/types/components'
 
 import { useStoreHistoryPage, } from 'src/stores/store-history-page'
 

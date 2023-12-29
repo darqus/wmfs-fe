@@ -3,8 +3,8 @@
     <q-form
       class="q-pa-md"
       style="max-width: 400px"
-      @submit.prevent="storeNewEmployee.add"
       @reset="storeNewEmployee.onReset"
+      @submit.prevent="storeNewEmployee.add"
     >
       <div class="row justify-center q-mb-md text-h5">
         Новый сотрудник
@@ -12,67 +12,67 @@
 
       <q-input
         v-model="storeNewEmployee.name"
-        outlined
-        dense
-        label="ФИО"
-        lazy-rules
         :rules="rules.required"
+        label="ФИО"
+        dense
+        lazy-rules
+        outlined
       />
 
       <q-input
         v-model="storeNewEmployee.email"
-        outlined
-        dense
-        label="Email"
-        lazy-rules
         :rules="[...rules.required, ...rules.email]"
+        label="Email"
+        dense
+        lazy-rules
+        outlined
       />
 
       <q-input
         v-model="storeNewEmployee.position"
-        outlined
-        dense
-        label="Должность"
-        lazy-rules
         :rules="rules.required"
+        label="Должность"
+        dense
+        lazy-rules
+        outlined
       />
 
       <q-select
         v-model="storeNewEmployee.level"
-        outlined
-        dense
-        label="Уровень"
-        lazy-rules
         :options="storeEmployeeCards.optionsFromLevel"
         :rules="rules.required"
+        label="Уровень"
+        dense
+        lazy-rules
+        outlined
       />
 
       <q-input
         v-model="storeNewEmployee.description"
-        outlined
-        dense
-        label="Описание"
-        lazy-rules
         :rules="[]"
+        label="Описание"
+        dense
+        lazy-rules
+        outlined
       />
 
       <div class="row justify-between q-mt-md">
         <q-btn
+          :disable="storeNewEmployee.loading"
+          color="primary"
           label="Сбросить"
           type="reset"
-          color="primary"
-          outline
           no-caps
-          :disable="storeNewEmployee.loading"
+          outline
         />
         <q-btn
-          label="Добавить"
-          type="submit"
-          color="primary"
-          class="q-ml-md"
-          no-caps
           :disable="storeNewEmployee.loading"
           :loading="storeNewEmployee.loading"
+          class="q-ml-md"
+          color="primary"
+          label="Добавить"
+          type="submit"
+          no-caps
         />
       </div>
     </q-form>

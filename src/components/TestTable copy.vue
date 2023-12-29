@@ -3,25 +3,25 @@
     <q-table
       ref="tableRef"
       v-model:pagination="pagination"
-      flat
-      bordered
-      title="Treats"
-      :rows="rows"
       :columns="columns"
-      row-key="id"
       :loading="loading"
+      :rows="rows"
       :filter="search"
+      row-key="id"
+      title="Treats"
       binary-state-sort
+      bordered
+      flat
       @request="onRequest"
     >
       <template #top-right>
         <q-input
           v-model="search"
-          outlined
-          dense
-          clearable
           debounce="300"
           placeholder="Search"
+          clearable
+          dense
+          outlined
         >
           <template #prepend>
             <q-icon name="search" />

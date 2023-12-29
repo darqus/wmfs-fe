@@ -1,9 +1,9 @@
 <template>
   <q-toggle
     v-model="isThemeDark"
-    size="xl"
     :icon="isThemeDark ? 'dark_mode' : 'light_mode'"
     :label="isThemeDark ? 'dark' : 'light'"
+    size="xl"
     @click="toggleTheme"
   />
 </template>

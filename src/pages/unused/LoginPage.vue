@@ -2,8 +2,8 @@
   <q-page class="row items-center justify-evenly">
     <q-form
       class="q-gutter-md"
-      @submit.prevent="storeAuth.onLogin"
       @reset="storeAuth.onResetForm"
+      @submit.prevent="storeAuth.onLogin"
     >
       <div class="row justify-center text-h6">
         Вход
@@ -11,48 +11,48 @@
 
       <q-input
         v-model="storeAuth.email"
-        outlined
-        dense
-        label="Email"
-        lazy-rules
         :rules="[...rules.required, ...rules.email]"
+        label="Email"
+        dense
+        lazy-rules
+        outlined
       />
 
       <q-input
         v-model="storeAuth.password"
-        outlined
-        dense
-        type="password"
-        label="Пароль"
         class="q-mb-lg"
-        lazy-rules
         :rules="[...rules.required, ...rules.password]"
+        label="Пароль"
+        type="password"
+        dense
+        lazy-rules
+        outlined
       />
 
       <div class="row justify-between">
         <q-btn
+          :disable="storeAuth.loading"
+          color="primary"
           label="Очистить"
           type="reset"
-          color="primary"
-          outline
           no-caps
-          :disable="storeAuth.loading"
+          outline
         />
         <q-btn
-          label="Войти"
-          type="submit"
-          color="primary"
-          no-caps
           :disable="storeAuth.loading"
           :loading="storeAuth.loading"
+          color="primary"
+          label="Войти"
+          type="submit"
+          no-caps
         />
       </div>
 
       <div class="row justify-center q-mt-md">
         <q-btn
+          size="md"
           flat
           no-caps
-          size="md"
           @click="$router.push('/forgot')"
         >
           Забыли пароль?

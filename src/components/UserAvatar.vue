@@ -4,17 +4,17 @@
     class="q-pa-md q-gutter-sm row justify-center"
   >
     <q-avatar
-      size="70px"
-      font-size="52px"
       color="primary"
-      text-color="white"
+      font-size="52px"
       icon="person"
+      size="70px"
+      text-color="white"
     />
     <q-input
       v-model="storeAuth.currentEmail"
+      label="Ваш Email"
       outlined
       readonly
-      label="Ваш Email"
     />
   </div>
 </template>
